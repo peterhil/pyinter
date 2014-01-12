@@ -10,7 +10,7 @@
 
    .. describe:: Standard comparison operators: <=, <, ==, !=, >, >=
 
-   Note: comparison is performed solely on the lower value of the :class:`~pyinter.Interval`.
+   Note: comparison is performed on both the lower and upper values of the :class:`~pyinter.Interval`.
 
    .. describe:: x in i
 

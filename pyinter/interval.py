@@ -100,14 +100,14 @@ class Interval(object):
         return '{l}{lv}, {uv}{u}'.format(l=lower_string, lv=self.lower_value, uv=self.upper_value, u=upper_string)
 
     def __lt__(self, other):
-        if hasattr(other, 'lower_value'):
-            return self.lower_value < other.lower_value
+        if hasattr(other, 'lower_value') and hasattr(other, 'upper_value'):
+            return self.lower_value < other.lower_value and self.upper_value < other.upper_value
         else:
             raise NotImplementedError
 
     def __le__(self, other):
-        if hasattr(other, 'lower_value'):
-            return self.lower_value <= other.lower_value
+        if hasattr(other, 'lower_value') and hasattr(other, 'upper_value'):
+            return self.lower_value <= other.lower_value and self.upper_value <= other.upper_value
         else:
             raise NotImplementedError
 
@@ -123,19 +123,19 @@ class Interval(object):
         return not self.__eq__(other)
 
     def __gt__(self, other):
-        if hasattr(other, 'lower_value'):
-            return self.lower_value > other.lower_value
+        if hasattr(other, 'lower_value') and hasattr(other, 'upper_value'):
+            return self.lower_value > other.lower_value and self.upper_value > other.upper_value
         else:
             raise NotImplementedError
 
     def __ge__(self, other):
-        if hasattr(other, 'lower_value'):
-            return self.lower_value >= other.lower_value
+        if hasattr(other, 'lower_value') and hasattr(other, 'upper_value'):
+            return self.lower_value >= other.lower_value and self.upper_value >= other.upper_value
         else:
             raise NotImplementedError
 
     def __hash__(self):
-        return hash(self.lower_value)
+        return hash((self._lower, self.lower_value, self.upper_value, self._upper))
 
     def __and__(self, other):
         return self.intersect(self, other)
