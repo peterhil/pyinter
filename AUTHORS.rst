@@ -4,3 +4,4 @@
 
 and various contributors:
 
+- Peter Hillerström
